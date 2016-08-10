@@ -2,56 +2,55 @@ package com.smart.plug.module.ui.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
 
 import com.smart.plug.R;
 import com.smart.plug.app.component.AppComponent;
 import com.smart.plug.app.component.DaggerMainComponent;
+import com.smart.plug.app.component.HasComponent;
+import com.smart.plug.app.component.MainComponent;
 import com.smart.plug.app.module.MainModule;
 import com.smart.plug.databinding.ActivityMainBinding;
 import com.smart.plug.module.base.BaseActivity;
 
-import javax.inject.Inject;
-
-public class MainActivity extends BaseActivity implements MainInterface.View{
-
-    @Inject
-    MainInterface.Presenter presenter;
+public class MainActivity extends BaseActivity implements HasComponent<MainComponent>{
 
     ActivityMainBinding binding;
+
+    private MainComponent mainComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        setupComponent();
-        binding.test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.freshenData();
-            }
-        });
-
+        initializeActivity(savedInstanceState);
     }
 
-    private void setupComponent() {
-        DaggerMainComponent.builder()
+    @Override
+    protected void setupComponent(AppComponent appComponent) {
+        mainComponent =  DaggerMainComponent.builder()
                 .appComponent(getAppComponent())
-                .activityModule(getActivityModule())
                 .mainModule(new MainModule(this))
-                .build()
-                .inject(this);
+                .build();
+
     }
+
 
     @Override
     protected void onFinish() {
-        presenter.destory();
+       this.finish();
+    }
+
+
+    private void initializeActivity(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            addFragment(R.id.fl_fragment, MainFragment.newInstance(), MainFragment.class.getSimpleName());
+        } else {
+
+        }
     }
 
     @Override
-    public void navigateToLogin() {
-
+    public MainComponent getComponent() {
+        return mainComponent;
     }
-
-
 }

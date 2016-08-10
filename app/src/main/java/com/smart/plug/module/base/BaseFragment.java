@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.smart.plug.app.component.HasComponent;
+
 /**
  * author: smart
  * time: 2016/7/26
@@ -24,6 +26,11 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -53,5 +60,10 @@ public abstract class BaseFragment extends Fragment {
 
     protected void showToastMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <A> A getComponent(Class<A> componentType) {
+        return componentType.cast(((HasComponent<A>) getActivity()).getComponent());
     }
 }

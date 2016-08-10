@@ -1,14 +1,15 @@
 package com.smart.plug.module.base;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import com.smart.plug.app.App;
 import com.smart.plug.app.component.AppComponent;
-import com.smart.plug.app.module.ActivityModule;
 
 /**
  * author: smart
@@ -17,12 +18,25 @@ import com.smart.plug.app.module.ActivityModule;
 public abstract class BaseActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setupComponent((AppComponent) App.get(this).component());
-        getAppComponent().inject(this);
+        setupComponent(getAppComponent());
+    }
+
+    /**
+     * 监听返回键
+     * @param tvBack
+     */
+    public void setTvBack(TextView tvBack){
+        TextView tvBacks = tvBack;
+        tvBacks.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                onFinish();
+            }
+        });
     }
 
     @Override
@@ -55,14 +69,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onRestart();
     }
 
-   /* protected void setupComponent(AppComponent appComponent){
-        appComponent.inject(this);
-    }*/
+    protected abstract void setupComponent(AppComponent appComponent);
 
     protected AppComponent getAppComponent(){
         return (AppComponent) App.get(this).component();
     }
 
+    /**
+     * 返回键监听事件
+     */
     protected abstract void onFinish();
 
     protected void addFragment(int containerViewId, Fragment fragment, String tag) {
@@ -75,9 +90,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return (T) getFragmentManager().findFragmentByTag(tag);
     }
 
-    protected ActivityModule getActivityModule() {
-        return new ActivityModule(this);
-    }
     /**
      * 监听Back键按下事件
      */

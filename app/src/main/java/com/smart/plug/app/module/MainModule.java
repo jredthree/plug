@@ -1,10 +1,14 @@
 package com.smart.plug.app.module;
 
-import android.app.Activity;
+import android.support.annotation.NonNull;
 
+import com.smart.plug.module.ui.main.MainActivity;
 import com.smart.plug.module.ui.main.MainInterface;
 import com.smart.plug.module.ui.main.MainModel;
 import com.smart.plug.module.ui.main.MainPresenter;
+import com.smart.plug.module.ui.main.User;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,27 +21,26 @@ import dagger.Provides;
 @Module
 public class MainModule {
 
-    private MainInterface.View view;
+    private MainActivity activity;
 
-    public MainModule(MainInterface.View view){
-        this.view = view;
+    public MainModule(MainActivity activity){
+       this.activity = activity;
     }
 
     @Provides
-    public MainInterface.View provideView(){
-        return view;
+    @Singleton
+    public MainActivity provideActivity(){
+        return activity;
     }
 
     @Provides
-    public MainInterface.Model provideModel(){
-        return new MainModel();
+    public MainInterface.Model provideModel(@NonNull User user){
+        return new MainModel(user);
     }
 
     @Provides
-    public MainInterface.Presenter providePresenter(MainInterface.View view ,MainInterface.Model model){
-        return new MainPresenter(view,model);
+    public MainInterface.Presenter providePresenter(@NonNull MainInterface.Model model){
+        return new MainPresenter(model);
     }
-
-
 
 }

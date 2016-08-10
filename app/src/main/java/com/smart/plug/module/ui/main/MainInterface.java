@@ -16,6 +16,7 @@ public interface MainInterface {
 
     interface Presenter extends BasePresenter{
         void freshenData();
+        void setView(MainInterface.View view);
     }
 
     interface Model extends BaseModel{

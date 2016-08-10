@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.smart.plug.app.App;
 import com.smart.plug.module.base.BaseModel;
+import com.smart.plug.module.ui.main.User;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -32,5 +33,6 @@ public class AppModule {
     public Context provideApplication(){
         return this.app;
     }
+
 
 }
