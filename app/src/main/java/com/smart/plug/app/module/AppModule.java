@@ -1,17 +1,21 @@
 package com.smart.plug.app.module;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.smart.plug.app.App;
-import com.smart.plug.module.base.BaseModel;
-import com.smart.plug.module.ui.main.User;
+import com.smart.plug.app.Constant.Constant;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * author: smart
@@ -33,6 +37,26 @@ public class AppModule {
     public Context provideApplication(){
         return this.app;
     }
+
+    @Provides
+    @Singleton
+    public Retrofit provideRetrofit(OkHttpClient.Builder builder){
+
+        return  new Retrofit.Builder()
+                .client(builder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(Constant.BASE_URL)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    public OkHttpClient.Builder provideBuilder(){
+        return new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS);
+    }
+
+
 
 
 }

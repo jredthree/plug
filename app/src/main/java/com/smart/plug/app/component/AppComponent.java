@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.smart.plug.app.module.AppModule;
 import com.smart.plug.module.base.BaseActivity;
-import com.smart.plug.module.ui.main.User;
 
 import javax.inject.Singleton;
 
@@ -24,4 +23,6 @@ public interface AppComponent {
     void inject(BaseActivity baseActivity);
 
     Context context();
+
+
 }
