@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.smart.plug.app.App;
 import com.smart.plug.app.Constant.Constant;
+import com.smart.plug.domain.http.ApiService;
+import com.smart.plug.domain.http.HttpMethods;
 
 import java.util.concurrent.TimeUnit;
 
@@ -56,6 +58,18 @@ public class AppModule {
         return new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS);
     }
 
+    @Provides
+    @Singleton
+    public ApiService provideApiService(Retrofit retrofit){
+        return retrofit.create(ApiService.class);
+    }
+
+    @Provides
+    @Singleton
+    public HttpMethods provideHttpMethods(ApiService apiService){
+
+        return new HttpMethods(apiService);
+    }
 
 
 

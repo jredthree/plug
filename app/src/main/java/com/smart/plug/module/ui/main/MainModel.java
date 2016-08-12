@@ -1,8 +1,9 @@
 package com.smart.plug.module.ui.main;
 
-import android.util.Log;
+import com.smart.plug.domain.entity.SoonBean;
+import com.smart.plug.domain.http.HttpMethods;
 
-import javax.inject.Inject;
+import rx.Subscriber;
 
 /**
  * author: smart
@@ -10,10 +11,12 @@ import javax.inject.Inject;
  */
 public class MainModel implements MainInterface.Model {
 
-    User user;
+    private OnSoonMovieListener onSoonMovieListener;
 
-    public MainModel(User user) {
-        this.user = user;
+    private HttpMethods httpMethods;
+
+    public MainModel(HttpMethods httpMethods) {
+        this.httpMethods = httpMethods;
     }
 
     @Override
@@ -27,8 +30,33 @@ public class MainModel implements MainInterface.Model {
     }
 
     @Override
-    public void test(String name) {
-        user.A();
-        Log.d("TAG",name);
+    public void getSoonMovie(int start, int count) {
+        httpMethods.getSoonMovie(new Subscriber<SoonBean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                onSoonMovieListener.onFailed(e);
+            }
+
+            @Override
+            public void onNext(SoonBean soonBean) {
+                onSoonMovieListener.onSuccess(soonBean);
+            }
+        },start,count);
     }
+
+    @Override
+    public void setOnSoonMovieListener(OnSoonMovieListener onSoonMovieListener) {
+        this.onSoonMovieListener = onSoonMovieListener;
+    }
+
+    public interface OnSoonMovieListener{
+        void onSuccess(SoonBean soonBean);
+        void onFailed(Throwable e);
+    }
+
 }

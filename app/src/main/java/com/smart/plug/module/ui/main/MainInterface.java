@@ -1,8 +1,11 @@
 package com.smart.plug.module.ui.main;
 
+import com.smart.plug.domain.entity.SoonBean;
 import com.smart.plug.module.base.BaseModel;
 import com.smart.plug.module.base.BasePresenter;
 import com.smart.plug.module.base.BaseView;
+
+import java.util.List;
 
 /**
  * author: smart
@@ -12,6 +15,7 @@ public interface MainInterface {
 
     interface View extends BaseView{
         void navigateToLogin();
+        void displayRecyclerView(List<SoonBean.SubjectsBean> list);
     }
 
     interface Presenter extends BasePresenter{
@@ -21,7 +25,8 @@ public interface MainInterface {
 
     interface Model extends BaseModel{
 
-        void test(String name);
+        void getSoonMovie(int start,int count);
+        void setOnSoonMovieListener(MainModel.OnSoonMovieListener onSoonMovieListener);
 
     }
 }

@@ -1,12 +1,9 @@
 package com.smart.plug.app.component;
 
-import com.smart.plug.app.qualifier.ActivityScope;
-import com.smart.plug.module.ui.main.MainActivity;
 import com.smart.plug.app.module.MainModule;
+import com.smart.plug.app.qualifier.ActivityScope;
 import com.smart.plug.module.ui.main.MainFragment;
 import com.smart.plug.module.ui.main.MainInterface;
-import com.smart.plug.module.ui.main.MainPresenter;
-import com.smart.plug.module.ui.main.User;
 
 import dagger.Component;
 
