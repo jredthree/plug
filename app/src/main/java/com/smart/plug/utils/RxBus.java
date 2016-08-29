@@ -1,6 +1,7 @@
 package com.smart.plug.utils;
 
 
+import rx.Observable;
 import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
@@ -27,5 +28,14 @@ public class RxBus {
             }
         }
         return instance;
+    }
+
+    public void post(Object event) {
+        _Bus.onNext(event);
+    }
+
+    public <T> Observable<T> toObserverable(Class<T> eventType) {
+        // ofType = filter + cast
+        return _Bus.ofType(eventType);
     }
 }
