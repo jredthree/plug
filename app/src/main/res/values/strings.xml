@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">plug</string>
+
+    <string name="main_title">电影</string>
+
+    <string name="movie_details_title">电影详情</string>
 </resources>

@@ -23,6 +23,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initializeActivity(savedInstanceState);
+        initView();
     }
 
     @Override
@@ -32,6 +33,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .mainModule(new MainModule(this))
                 .build();
 
+    }
+
+    private void initView(){
+        binding.toolbar.setTitle(getString(R.string.main_title));
     }
 
 

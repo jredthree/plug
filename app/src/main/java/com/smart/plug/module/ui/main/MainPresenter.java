@@ -27,6 +27,11 @@ public class MainPresenter implements MainInterface.Presenter,MainModel.OnSoonMo
     }
 
     @Override
+    public void recyclerOnClick(int position, SoonBean.SubjectsBean bean) {
+        view.navigateToMovieDetails();
+    }
+
+    @Override
     public void freshenData() {
         model.getSoonMovie(start,count);
     }

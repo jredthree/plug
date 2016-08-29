@@ -1,5 +1,6 @@
 package com.smart.plug.module.ui.main;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.red.databindingadapterhelp.adapter.RecyclerBaseAdapter;
 import com.smart.plug.R;
 import com.smart.plug.app.component.MainComponent;
 import com.smart.plug.databinding.FragmentMainBinding;
 import com.smart.plug.domain.entity.SoonBean;
 import com.smart.plug.module.base.BaseFragment;
 import com.smart.plug.module.ui.main.adapter.SoonMovieAdapter;
+import com.smart.plug.module.ui.moviedetails.MovieDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +94,14 @@ public class MainFragment extends BaseFragment implements MainInterface.View  {
         mList = new ArrayList<>();
         mAdapter = new SoonMovieAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setMyItemClickListener(new RecyclerBaseAdapter.MyItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                presenter.recyclerOnClick(position,mAdapter.getItemObject(position));
+            }
+        });
+
         onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -104,12 +115,14 @@ public class MainFragment extends BaseFragment implements MainInterface.View  {
                 }, 3000);
             }
         };
+
         mSwipeRefreshLayout.setOnRefreshListener(onRefreshListener);
     }
 
     @Override
-    public void navigateToLogin() {
-
+    public void navigateToMovieDetails() {
+        Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -1,18 +1,17 @@
 package com.smart.plug.app;
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.smart.plug.app.component.AppComponent;
 import com.smart.plug.app.component.DaggerAppComponent;
 import com.smart.plug.app.module.AppModule;
-import com.squareup.leakcanary.LeakCanary;
 
 /**
  * author: smart
  * time: 2016/7/25
  */
-public class App extends Application{
+public class App extends MultiDexApplication {
 
     private AppComponent component;
 
@@ -30,7 +29,7 @@ public class App extends Application{
     }
 
     private void installLeak(){
-        LeakCanary.install(this);
+       // LeakCanary.install(this);
     }
 
     public AppComponent component() {

@@ -14,13 +14,14 @@ import java.util.List;
 public interface MainInterface {
 
     interface View extends BaseView{
-        void navigateToLogin();
+        void navigateToMovieDetails();
         void displayRecyclerView(List<SoonBean.SubjectsBean> list);
     }
 
     interface Presenter extends BasePresenter{
         void freshenData();
         void setView(MainInterface.View view);
+        void recyclerOnClick(int position,SoonBean.SubjectsBean bean);
     }
 
     interface Model extends BaseModel{

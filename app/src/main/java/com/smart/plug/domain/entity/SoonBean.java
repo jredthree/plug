@@ -6,7 +6,7 @@ import java.util.List;
  * author: smart
  * time: 2016/8/12
  */
-public class SoonBean  {
+public class SoonBean extends BaseBean {
 
     /**
      * count : 5
@@ -76,6 +76,8 @@ public class SoonBean  {
     public void setSubjects(List<SubjectsBean> subjects) {
         this.subjects = subjects;
     }
+
+
 
     public static class SubjectsBean {
         /**
@@ -433,4 +435,5 @@ public class SoonBean  {
             }
         }
     }
+
 }
