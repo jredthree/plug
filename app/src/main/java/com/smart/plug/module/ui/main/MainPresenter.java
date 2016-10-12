@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.smart.plug.app.qualifier.ActivityScope;
 import com.smart.plug.domain.entity.SoonBean;
+import com.smart.plug.module.ui.moviedetails.event.IntentMovieDetailsEvent;
+import com.smart.plug.utils.RxBus;
 
 /**
  * author: smart
@@ -16,6 +18,8 @@ public class MainPresenter implements MainInterface.Presenter,MainModel.OnSoonMo
     private MainInterface.Model model;
     private int start;
     private int count;
+
+
     public MainPresenter(MainInterface.Model model) {
         this.model = model;
         this.model.setOnSoonMovieListener(this);
@@ -28,7 +32,9 @@ public class MainPresenter implements MainInterface.Presenter,MainModel.OnSoonMo
 
     @Override
     public void recyclerOnClick(int position, SoonBean.SubjectsBean bean) {
-        view.navigateToMovieDetails();
+
+        RxBus.getInstance().post(new IntentMovieDetailsEvent(bean.getId()));
+
     }
 
     @Override

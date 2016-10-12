@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.smart.plug.app.App;
 import com.smart.plug.app.component.AppComponent;
@@ -26,11 +26,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 监听返回键
-     * @param tvBack
+     * @param isShow
+     * @param back
      */
-    public void setTvBack(TextView tvBack){
-        TextView tvBacks = tvBack;
-        tvBacks.setOnClickListener(new View.OnClickListener(){
+    protected void showBackIcon(boolean isShow, ImageView back){
+        back.setVisibility(isShow ? View.VISIBLE : View.GONE);
+        back.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {

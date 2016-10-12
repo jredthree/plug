@@ -34,13 +34,11 @@ public class MovieDetailsModule {
     }
 
     @Provides
-    @Singleton
     public MovieDetailsInterface.Model provideModel(HttpMethods httpMethods){
         return new MovieDetailsModel(httpMethods);
     }
 
     @Provides
-    @Singleton
     public MovieDetailsInterface.Presenter providePresenter(@NonNull MovieDetailsInterface.Model model){
         return new MovieDetailsPresenter(model);
     }

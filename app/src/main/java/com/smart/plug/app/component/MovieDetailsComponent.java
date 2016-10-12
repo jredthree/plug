@@ -3,6 +3,7 @@ package com.smart.plug.app.component;
 import com.smart.plug.app.module.MovieDetailsModule;
 import com.smart.plug.app.qualifier.ActivityScope;
 import com.smart.plug.module.ui.moviedetails.MovieDetailsFragment;
+import com.smart.plug.module.ui.moviedetails.MovieDetailsInterface;
 
 import dagger.Component;
 
@@ -19,4 +20,5 @@ public interface MovieDetailsComponent {
 
     void inject(MovieDetailsFragment movieDetailsFragment);
 
+    MovieDetailsInterface.Presenter getPresenter();
 }

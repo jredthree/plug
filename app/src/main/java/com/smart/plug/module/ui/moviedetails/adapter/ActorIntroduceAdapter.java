@@ -1,31 +1,32 @@
-package com.smart.plug.module.ui.main.adapter;
+package com.smart.plug.module.ui.moviedetails.adapter;
 
+import com.red.databindingadapterhelp.BR;
 import com.red.databindingadapterhelp.adapter.RecyclerBaseAdapter;
 import com.red.databindingadapterhelp.adapter.RecyclerViewHolder;
-import com.smart.plug.BR;
 import com.smart.plug.R;
-import com.smart.plug.domain.entity.SoonBean;
+import com.smart.plug.domain.entity.MovieBean;
 
 import java.util.List;
 
 /**
  * author: smart
- * time: 2016/8/12
+ * time: 2016/10/12
  */
-public class SoonMovieAdapter extends RecyclerBaseAdapter<SoonBean.SubjectsBean> {
 
-    public SoonMovieAdapter(List<SoonBean.SubjectsBean> mData) {
+public class ActorIntroduceAdapter extends RecyclerBaseAdapter<MovieBean.CastsBean> {
+
+    public ActorIntroduceAdapter(List<MovieBean.CastsBean> mData) {
         super(mData);
     }
 
     @Override
     public int getItemLayoutId(int viewType) {
-        return R.layout.soonmovie_item;
+        return R.layout.actor_item;
     }
 
     @Override
     public int getVariableId(int viewType) {
-          return BR.soon;
+        return BR.actor;
     }
 
     @Override
@@ -34,7 +35,7 @@ public class SoonMovieAdapter extends RecyclerBaseAdapter<SoonBean.SubjectsBean>
     }
 
     @Override
-    public void bindCustomData(RecyclerViewHolder holder, int position, SoonBean.SubjectsBean item) {
+    public void bindCustomData(RecyclerViewHolder holder, int position, MovieBean.CastsBean item) {
 
     }
 

@@ -14,7 +14,6 @@ import java.util.List;
 public interface MainInterface {
 
     interface View extends BaseView{
-        void navigateToMovieDetails();
         void displayRecyclerView(List<SoonBean.SubjectsBean> list);
     }
 

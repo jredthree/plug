@@ -1,5 +1,12 @@
 <layout >
 
+    <data>
+
+    <variable
+        name="movieDetails"
+        type="com.smart.plug.domain.entity.MovieBean"/>
+    </data>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -9,7 +16,34 @@
      <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="ddd"/>
+         android:textSize="@dimen/text_title_size"
+         android:textColor="@color/colorWhite"
+         android:layout_margin="@dimen/activity_horizontal_margin"
+         android:text="@{movieDetails.title}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/item_title_tostar"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/actorRecyclerView"
+            android:layout_marginLeft="6dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/colorWhite"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:text="@{movieDetails.summary}"/>
 
     </LinearLayout>
 
