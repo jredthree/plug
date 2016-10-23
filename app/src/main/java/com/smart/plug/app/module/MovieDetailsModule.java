@@ -2,6 +2,7 @@ package com.smart.plug.app.module;
 
 import android.support.annotation.NonNull;
 
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.domain.http.HttpMethods;
 import com.smart.plug.module.ui.moviedetails.MovieDetailsActivity;
 import com.smart.plug.module.ui.moviedetails.MovieDetailsInterface;
@@ -34,8 +35,8 @@ public class MovieDetailsModule {
     }
 
     @Provides
-    public MovieDetailsInterface.Model provideModel(HttpMethods httpMethods){
-        return new MovieDetailsModel(httpMethods);
+    public MovieDetailsInterface.Model provideModel(ApiInterface apiInterface){
+        return new MovieDetailsModel(apiInterface);
     }
 
     @Provides

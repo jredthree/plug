@@ -1,6 +1,8 @@
 package com.smart.plug.utils;
 
 
+import android.util.Log;
+
 import rx.Observable;
 import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
@@ -31,11 +33,13 @@ public class RxBus {
     }
 
     public void post(Object event) {
+
         _Bus.onNext(event);
     }
 
     public <T> Observable<T> toObserverable(Class<T> eventType) {
         // ofType = filter + cast
+        Log.i("TAG",eventType.toString()+"-----------");
         return _Bus.ofType(eventType);
     }
 }

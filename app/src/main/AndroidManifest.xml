@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/NoTitleFullscreen">
+        android:theme="@style/AppTheme">
         <activity android:name=".module.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,8 @@
 
 
         <activity android:name=".module.ui.moviedetails.MovieDetailsActivity"/>
+
+        <activity android:name=".module.ui.search.SearchActivity"/>
 
     </application>
 

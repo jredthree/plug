@@ -19,4 +19,7 @@ public interface ApiService {
 
     @GET("subject/{id}")
     Observable<MovieBean> getMovieDetails(@Path("id") String id);
+
+    @GET("search")
+    Observable<SoonBean> getSearchMovie(@Query("q") String q, @Query("tag") String tag,@Query("start") int start,@Query("count") int count);
 }

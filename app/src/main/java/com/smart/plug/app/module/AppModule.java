@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.smart.plug.app.App;
 import com.smart.plug.app.Constant.Constant;
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.domain.http.ApiService;
 import com.smart.plug.domain.http.HttpMethods;
 
@@ -66,7 +67,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public HttpMethods provideHttpMethods(ApiService apiService){
+    public ApiInterface provideHttpMethods(ApiService apiService){
 
         return new HttpMethods(apiService);
     }

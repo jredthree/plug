@@ -1,7 +1,7 @@
 package com.smart.plug.module.ui.moviedetails;
 
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.domain.entity.MovieBean;
-import com.smart.plug.domain.http.HttpMethods;
 
 import rx.Subscriber;
 
@@ -11,11 +11,11 @@ import rx.Subscriber;
  */
 public class MovieDetailsModel implements MovieDetailsInterface.Model {
 
-    private HttpMethods httpMethods;
+    private ApiInterface api;
     private OnMovieDetailsListener listener;
 
-    public MovieDetailsModel(HttpMethods httpMethods) {
-        this.httpMethods = httpMethods;
+    public MovieDetailsModel(ApiInterface api) {
+        this.api = api;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MovieDetailsModel implements MovieDetailsInterface.Model {
 
     @Override
     public void getMovieDetails(String id) {
-        httpMethods.getMovieDetails(new Subscriber<MovieBean>() {
+        api.getMovieDetails(new Subscriber<MovieBean>() {
             @Override
             public void onCompleted() {
 

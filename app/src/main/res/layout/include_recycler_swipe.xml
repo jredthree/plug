@@ -2,20 +2,19 @@
 <layout>
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
+            <com.smart.plug.widget.AutoLoadRecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/recyclerView">
 
-            </android.support.v7.widget.RecyclerView>
+            </com.smart.plug.widget.AutoLoadRecyclerView>
 
 
         </android.support.v4.widget.SwipeRefreshLayout>

@@ -1,5 +1,6 @@
 package com.smart.plug.domain.http;
 
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.domain.entity.MovieBean;
 import com.smart.plug.domain.entity.SoonBean;
 
@@ -12,10 +13,9 @@ import rx.schedulers.Schedulers;
  * author: smart
  * time: 2016/8/10
  */
-public class HttpMethods {
+public class HttpMethods implements ApiInterface {
 
     private ApiService apiService;
-
 
     public HttpMethods( ApiService apiService) {
         this.apiService = apiService;
@@ -35,6 +35,13 @@ public class HttpMethods {
 
         toSubscribe(observable,subscriber);
 
+    }
+
+    @Override
+    public void getSearchMovie(Subscriber<SoonBean> subscriber, String q, String tag,int start,int count) {
+        Observable<SoonBean> observable = apiService.getSearchMovie(q,tag, start, count);
+
+        toSubscribe(observable,subscriber);
     }
 
     private <T> void toSubscribe(Observable<T> o, Subscriber<T> s){

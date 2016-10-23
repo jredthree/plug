@@ -3,7 +3,7 @@ package com.smart.plug.app.component;
 import android.content.Context;
 
 import com.smart.plug.app.module.AppModule;
-import com.smart.plug.domain.http.HttpMethods;
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.module.base.BaseActivity;
 
 import javax.inject.Singleton;
@@ -25,6 +25,6 @@ public interface AppComponent {
 
     Context context();
 
-    HttpMethods getHttpMethods();
+    ApiInterface getApi();
 
 }

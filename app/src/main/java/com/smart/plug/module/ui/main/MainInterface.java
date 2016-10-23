@@ -18,6 +18,7 @@ public interface MainInterface {
     }
 
     interface Presenter extends BasePresenter{
+        void initCount();
         void freshenData();
         void setView(MainInterface.View view);
         void recyclerOnClick(int position,SoonBean.SubjectsBean bean);
@@ -27,6 +28,5 @@ public interface MainInterface {
 
         void getSoonMovie(int start,int count);
         void setOnSoonMovieListener(MainModel.OnSoonMovieListener onSoonMovieListener);
-
     }
 }

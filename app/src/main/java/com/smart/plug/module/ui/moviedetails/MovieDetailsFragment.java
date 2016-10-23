@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,6 @@ public class MovieDetailsFragment extends BaseFragment implements MovieDetailsIn
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.getComponent(MovieDetailsComponent.class).inject(this);
 
     }
@@ -130,6 +130,7 @@ public class MovieDetailsFragment extends BaseFragment implements MovieDetailsIn
         mList.addAll(movieBean.getCasts());
         mAdapter.notifyDataSetChanged();
         binding.setMovieDetails(movieBean);
+        Log.i("TAG",movieBean.getRating().getAverage()+"---dd--");
         RxBus.getInstance().post(new PassingValueImageEvent(movieBean.getImages().getLarge()));
     }
 }

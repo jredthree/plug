@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.smart.plug.databinding.FragmentMainBinding;
 import com.smart.plug.domain.entity.SoonBean;
 import com.smart.plug.module.base.BaseFragment;
 import com.smart.plug.module.ui.main.adapter.SoonMovieAdapter;
+import com.smart.plug.widget.AutoLoadRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MainFragment extends BaseFragment implements MainInterface.View  {
 
     private FragmentMainBinding binding ;
 
-    private RecyclerView mRecyclerView;
+    private AutoLoadRecyclerView mAutoLoadRecyclerView;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -85,13 +85,20 @@ public class MainFragment extends BaseFragment implements MainInterface.View  {
 
     }
 
+    @Override
+    public void onDestroy() {
+        presenter.destory();
+        super.onDestroy();
+
+    }
+
     private void init(){
-        mRecyclerView = binding.includers.recyclerView;
+        mAutoLoadRecyclerView = binding.includers.recyclerView;
         mSwipeRefreshLayout = binding.includers.swipeRefreshLayout;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAutoLoadRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList = new ArrayList<>();
         mAdapter = new SoonMovieAdapter(mList);
-        mRecyclerView.setAdapter(mAdapter);
+        mAutoLoadRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setMyItemClickListener(new RecyclerBaseAdapter.MyItemClickListener() {
             @Override
@@ -103,7 +110,7 @@ public class MainFragment extends BaseFragment implements MainInterface.View  {
         onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.start();
+                presenter.initCount();
                 presenter.freshenData();
                 new Handler().postDelayed(new Runnable() {
                     @Override

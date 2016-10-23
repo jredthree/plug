@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param isShow
      * @param back
      */
-    protected void showBackIcon(boolean isShow, ImageView back){
+    public void showBackIcon(boolean isShow, ImageView back){
         back.setVisibility(isShow ? View.VISIBLE : View.GONE);
         back.setOnClickListener(new View.OnClickListener(){
 

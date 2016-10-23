@@ -18,7 +18,7 @@ public class ImageUtils {
      * @param view
      * @param url
      */
-    @BindingAdapter({"bind:imageUrl","bind:error"})
+    @BindingAdapter({"imageUrl","error"})
     public static void loadImage(ImageView view, String url, Drawable error) {
         Glide.with(view.getContext())
                 .load(url)

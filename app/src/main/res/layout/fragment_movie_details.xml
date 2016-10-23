@@ -1,10 +1,9 @@
 <layout >
 
     <data>
-
-    <variable
-        name="movieDetails"
-        type="com.smart.plug.domain.entity.MovieBean"/>
+        <variable
+            name="movieDetails"
+            type="com.smart.plug.domain.entity.MovieBean"/>
     </data>
 
     <LinearLayout
@@ -13,19 +12,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:textSize="@dimen/text_title_size"
-         android:textColor="@color/colorWhite"
-         android:layout_margin="@dimen/activity_horizontal_margin"
-         android:text="@{movieDetails.title}"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title_size"
+                android:textColor="@color/colorText"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="@{movieDetails.title}"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/title_size"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorText"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="@string/item_title_tostar"/>
 
@@ -41,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorText"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:text="@{movieDetails.summary}"/>
 

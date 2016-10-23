@@ -1,7 +1,7 @@
 package com.smart.plug.module.ui.main;
 
+import com.smart.plug.domain.api.ApiInterface;
 import com.smart.plug.domain.entity.SoonBean;
-import com.smart.plug.domain.http.HttpMethods;
 
 import rx.Subscriber;
 
@@ -13,10 +13,10 @@ public class MainModel implements MainInterface.Model {
 
     private OnSoonMovieListener onSoonMovieListener;
 
-    private HttpMethods httpMethods;
+    private ApiInterface api;
 
-    public MainModel(HttpMethods httpMethods) {
-        this.httpMethods = httpMethods;
+    public MainModel(ApiInterface api) {
+        this.api = api;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MainModel implements MainInterface.Model {
 
     @Override
     public void getSoonMovie(int start, int count) {
-        httpMethods.getSoonMovie(new Subscriber<SoonBean>() {
+        api.getSoonMovie(new Subscriber<SoonBean>() {
             @Override
             public void onCompleted() {
 
